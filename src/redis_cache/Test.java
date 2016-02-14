@@ -34,9 +34,9 @@ public class Test {
 	  // 获取数据并输出
 	     Collection<String> keys = jedis.keys("*");
 	     for (String key : keys) {
-	    	 if (key.indexOf("-list")<0){
-	    		 System.out.println("List of stored keys:: "+key+"===："+jedis.get(key));
-			}else{
+	    	 if ("string".equals(jedis.type(key))){
+	    		 System.out.println("L)st of stored keys:: "+key+"===："+jedis.get(key));
+			}else if ("list".equals(jedis.type(key))){
 				List<String> list1 = jedis.lrange("tutorial-list", 0 ,5);
 			     for(int i=0; i<list.size(); i++) {
 			    	 System.out.println("List of stored keys:: "+key+"===："+list1.get(i));
