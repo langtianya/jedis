@@ -9,6 +9,9 @@ public class Test {
 	public static void main(String[] args) {
 	      //连接本地的 Redis 服务
 	      Jedis jedis = new Jedis("localhost");
+	      jedis.auth("foobared");//默认是没有设置密码，如果设置了密码，就要用auth(password);设置密码，
+	      //否则报错  redis.clients.jedis.exceptions.JedisDataException: ERR operation not permitted
+	      
 	      System.out.println("Connection to server sucessfully");
 	      //查看服	务是否运行
 	      System.out.println("Server is running: "+jedis.ping());
